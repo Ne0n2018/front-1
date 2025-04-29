@@ -43,7 +43,16 @@ export default function patientsList() {
   }
   return (
     <Container className="p-4">
-      <Title text="список пациентов" />
+      <div className="flex justify-between">
+        <Title text="список пациентов" />
+        <Button
+          onClick={() => {
+            router.push("/patients/new");
+          }}
+        >
+          добавть нового пациента
+        </Button>
+      </div>
       {patients.length === 0 ? (
         <p className="text-center text-muted-foreground">пациентов пока нету</p>
       ) : (

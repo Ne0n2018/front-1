@@ -48,7 +48,7 @@ export default function doctorProfile() {
     <Container className="flex flex-col gap-6">
       <Title text="Ваш профиль" />
       <DoctorPRofile doctor={doctor} />
-      <GroupButton />
+      <GroupButton user={doctor} />
     </Container>
   );
 }
