@@ -20,7 +20,7 @@ export default function LoginPage() {
   useEffect(() => {
     if (user) {
       console.log("User is logged in, redirecting to dashboard:", user);
-      router.push(`/dashboard/${user.id}`);
+      router.push(`/profile/${user.id}`);
     }
   }, [user, router]);
 
@@ -30,7 +30,7 @@ export default function LoginPage() {
       setError("");
       await login(email, password);
       console.log("Login successful, user should redirect");
-      router.push("/dashboard");
+      router.push(`/profile/${user?.id}`);
     } catch (err) {
       setError(err.message || "Invalid email or password");
     }

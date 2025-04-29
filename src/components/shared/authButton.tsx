@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { LogIn, UserPlus } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function AuthButton() {
   const [email, setEmail] = useState("");
@@ -21,11 +22,13 @@ export default function AuthButton() {
   const { user, login, logout, loading } = useAuth();
   const [error, setError] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       setError("");
       await login(email, password);
+      router.push(`/profile/${user?.id}`);
     } catch (err) {
       setError(err.message || "Invalid email or password");
     }

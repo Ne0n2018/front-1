@@ -24,14 +24,14 @@ export default function RegisterPage() {
   const [name, setName] = useState("");
   const [role, setRole] = useState<Role>(Role.DOCTOR);
   const [error, setError] = useState("");
-  const { register } = useAuth();
+  const { register, user } = useAuth();
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       await register(email, password, name, role);
-      router.push("/dashboard");
+      router.push(`/profile/${user?.id}`);
     } catch (err) {
       setError(`Registration failed ${err}`);
     }
